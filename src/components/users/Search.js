@@ -10,9 +10,13 @@ class Search extends Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   
   onSubmit = e => {
-    e.preventDefault();
-    this.props.searchUsers(this.state.text);
-    this.setState({ text: '' });
+    e.preventDefault(); 
+    if( this.state.text === '') {
+      this.props.setAlert('Please enter something', 'light');
+    } else {
+      this.props.searchUsers(this.state.text);
+      this.setState({ text: '' });      
+    }
   }
 
   static propTypes = {
